@@ -15,6 +15,7 @@ angular.module('schemaForm').directive('schemaValidate', ['sfValidator', '$parse
         scope.$emit('schemaFormPropagateNgModelController', ngModel);
 
         var error = null;
+        var asyncValidatorNames = null;
         var form = scope.$eval(attrs.schemaValidate);
 
         if (form.copyValueTo) {
@@ -95,13 +96,25 @@ angular.module('schemaForm').directive('schemaValidate', ['sfValidator', '$parse
 
         // But we do use one custom validator in the case of Angular 1.3 to stop the model from
         // updating if we've found an error.
-        if (ngModel.$validators) {
-          ngModel.$validators.schemaForm = function() {
-            //console.log('validators called.')
-            // Any error and we're out of here!
-            return !Object.keys(ngModel.$error).some(function(e) { return e !== 'schemaForm';});
-          };
-        }
+          if (ngModel.$validators) {
+              //If there are asyncValidators, they need to be ignored here otherwise
+              // they prevent themselves being run again after coming back invalid
+              if (ngModel.$asyncValidators) {
+                  asyncValidatorNames = Object.keys(ngModel.$asyncValidators);
+              }
+              ngModel.$validators.schemaForm = function () {
+                  //console.log('validators called.')
+                  // Any error and we're out of here!
+
+                  return !Object.keys(ngModel.$error).some(function (e) {
+                      //Don't error for asyncValidators
+                      if (asyncValidatorNames && asyncValidatorNames.indexOf(e) > -1) {
+                          return false;
+                      }
+                      return e !== 'schemaForm';
+                  });
+              };
+          }
 
         var schema = form.schema;
 
