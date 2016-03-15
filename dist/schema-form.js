@@ -568,6 +568,13 @@ angular.module('schemaForm').provider('schemaFormDecorators',
                   (!scope.ngModel.$pristine || !scope.ngModel.$isEmpty(scope.ngModel.$modelValue));
             };
 
+            scope.hasPending = function() {
+                if (!scope.ngModel) {
+                    return false;
+                }
+                return scope.ngModel.$pending && !scope.ngModel.$pristine;
+            };
+
             scope.hasError = function() {
               if (!scope.ngModel) {
                 return false;
