@@ -2,7 +2,7 @@
   "name": "angular-schema-form",
   "version": "0.8.13",
   "description": "Create complex forms from a JSON schema with angular.",
-  "repository": "Textalk/angular-schema-form",
+  "repository": "DefMon/angular-schema-form_enhanced-async",
   "main": "dist/schema-form.min.js",
   "filename": "dist/schema-form.min.js",
   "homepage": "http://schemaform.io",
@@ -60,12 +60,12 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://raw.githubusercontent.com/Textalk/angular-schema-form/master/LICENSE"
+      "url": "https://raw.githubusercontent.com/DefMon/angular-schema-form_enhanced-async/master/LICENSE"
     }
   ],
   "autoupdate": {
     "source": "git",
-    "target": "git://github.com/Textalk/angular-schema-form.git",
+    "target": "git://github.com/DefMon/angular-schema-form_enhanced-async.git",
     "basePath": "/dist/",
     "files": [
       "schema-form.min.js",
