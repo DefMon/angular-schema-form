@@ -1,4 +1,7 @@
 Angular Schema Form
+==================
+Forked to improve handling of asyncValidators
+
 ===================
 [![bower version](https://img.shields.io/bower/v/angular-schema-form.svg?style=flat-square)](#bower)
 [![npm version](https://img.shields.io/npm/v/angular-schema-form.svg?style=flat-square)](https://www.npmjs.org/package/angular-schema-form)
